@@ -15,6 +15,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+typedef struct s_list
+{
+    void            *content;
+    struct s_list   *next;
+}                   t_list;
+
+t_list  *ft_lstnew(void *content);
 int		ft_strlen(const char *s);
 char	*ft_strdup(char *src);
 size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize);
