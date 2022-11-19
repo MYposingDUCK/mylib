@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rdolf <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/09 17:48:05 by rdolf             #+#    #+#             */
-/*   Updated: 2021/02/09 17:48:08 by rdolf            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
-int	ft_strlen(const char *s)
+int	my_strlen(const char *s)
 {
 	int	count;
 
@@ -25,7 +13,7 @@ int	ft_strlen(const char *s)
 	return (count);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*my_strchr(const char *s, int c)
 {
 	size_t	i;
 	char	*ch;
@@ -41,7 +29,7 @@ char	*ft_strchr(const char *s, int c)
 	return (ch + i);
 }
 
-char	*ft_strjoin(char *s1, char const *s2)
+char	*my_strjoin(char *s1, char const *s2)
 {
 	size_t	len;
 	size_t	i;
@@ -50,7 +38,7 @@ char	*ft_strjoin(char *s1, char const *s2)
 	if (!s1 || !s2)
 		return (NULL);
 	i = 0;
-	len = ft_strlen(s1) + ft_strlen(s2);
+	len = my_strlen(s1) + my_strlen(s2);
 	strj = (char *)malloc(sizeof(*strj) * len + 1);
 	if (!(strj))
 		return (NULL);

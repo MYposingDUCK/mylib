@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rdolf <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 17:05:49 by rdolf             #+#    #+#             */
-/*   Updated: 2021/11/18 17:05:59 by rdolf            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
-static char	*ft_strnew(int i)
+static char	*my_strnew(int i)
 {
 	char		*str;
 
@@ -28,7 +16,7 @@ static char	*ft_strnew(int i)
 	return (str);
 }
 
-char	*ft_new_remainder(char *remainder_line)
+char	*my_new_remainder(char *remainder_line)
 {
 	int		i;
 	int		j;
@@ -42,7 +30,7 @@ char	*ft_new_remainder(char *remainder_line)
 		free(remainder_line);
 		return (NULL);
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(remainder_line) - i + 1));
+	str = (char *)malloc(sizeof(char) * (my_strlen(remainder_line) - i + 1));
 	if (!str)
 		return (NULL);
 	i++;
@@ -54,7 +42,7 @@ char	*ft_new_remainder(char *remainder_line)
 	return (str);
 }
 
-char	*ft_get_line(char *remainder)
+char	*my_get_line(char *remainder)
 {
 	int		i;
 	char	*get_line;
@@ -89,14 +77,14 @@ char	*read_line(int fd, char *line)
 	char	*tmp;
 
 	byte_was_read = 1;
-	while (!ft_strchr(line, '\n') && byte_was_read != 0)
+	while (!my_strchr(line, '\n') && byte_was_read != 0)
 	{
 		byte_was_read = read(fd, buff, BUFFER_SIZE);
 		if (byte_was_read == -1)
 			return (NULL);
 		buff[byte_was_read] = '\0';
 		tmp = line;
-		line = ft_strjoin(line, buff);
+		line = my_strjoin(line, buff);
 		free(tmp);
 		if (!(line))
 			return (NULL);
@@ -114,9 +102,9 @@ char	*get_next_line(int fd)
 			|| (read(fd, buff, 0)) < 0))
 		return (NULL);
 	if (!remainder_line)
-		remainder_line = ft_strnew(0);
+		remainder_line = my_strnew(0);
 	remainder_line = read_line(fd, remainder_line);
-	line = ft_get_line(remainder_line);
-	remainder_line = ft_new_remainder(remainder_line);
+	line = my_get_line(remainder_line);
+	remainder_line = my_new_remainder(remainder_line);
 	return (line);
 }
